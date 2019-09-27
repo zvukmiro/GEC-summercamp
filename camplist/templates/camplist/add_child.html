@@ -1,0 +1,23 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/bookCamp.jpg");
+    background-size: cover;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <h2>Add a Child</h2>
+    <p> Parent : {{ user.username }}</p>
+    <form method='POST' action=''>{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save</button>
+    </form>
+  {% else %}
+    <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+  body, html{
+    height:auto;
+  }
+
+   .container-fluid {
+    background-image: url("../../static/camplist/img/girl-1.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    color: #800000;
+    text-shadow: 3px 3px 2px #FFDAB9;
+    font-weight: 500;
+   }
+</style>
+{% endblock %}
+{% block content %}
+  <h1>User List</h1>
+  {% if userlist %}
+  <ul>
+    {% for user in userlist %}
+      <li>
+        <p><em>DATES: </em>{{ user.username }}</p>
+        <p><em>FIELD TRIP: </em><b>{{ user.email }}</b></p>
+        <p><em>PRICE: <em><i>{{ user.first_name }}</i></p>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no camps available.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/tree.jpg");
+    background-size: cover;
+    font-weight: 500;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h2>Parent Contact Info</h2>
+  <ul style="list-style: none;">
+    <p><em><h4> {{ object.first_name }} {{ object.last_name }}</h4></em></p>
+    <p><em>EMAIL: <em>{{ object.email }}</em></p>
+    <p><em>USERNAME: <em><b>{{ object.username }}</b></em></p>
+    <p><em>ADDRESS: <em>{{ object.address }}</em></p>
+    <p><em>PHONE: <em>{{ object.phone }}</em></p>
+    <p><em>CHILDREN ({{ object.children.all|length }}):</em></p>
+    {% for child in object.children.all %}
+      <ul style="list-style: none;">
+        <li><a href="{{ child.get_absolute_url }}">{{ child.first_name }} {{ child.last_name }}</a> <small>({{ child.dob }})</small></li>
+      </ul>
+    {% empty %}
+      <p>No children registered.<p>
+    {% endfor %}
+  <br>
+  {% if object.balance %}
+    <p><em>OUTSTANDING BALANCE: ${{ object.balance }}</em></p>
+    <p><b>please pay using Titan, or by check in person at the site.</b></p>
+  {% endif %}
+  </ul>
+    <p><a href="{% url 'edit-user' object.id %}">Edit User Info</a></p>
+    <p><a href="{% url 'add-child' %}">Add a Child</a></p>
+    <p><a href="{% url 'camps' %}">Back to the Camp List</a></p>
+
+{% endblock %}

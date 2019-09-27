@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/bookCamp.jpg");
+    background-size: cover;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1>Book: {{ camptheme.theme }}</h1>
+  <p>Child: {{ child.first_name }}</p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}

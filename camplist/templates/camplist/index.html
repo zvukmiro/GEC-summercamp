@@ -1,0 +1,12 @@
+{% extends "camplist/base_generic.html" %}
+
+{% block content %}
+  <h1>Welcome to the Union School District Summer Camps!</h1>
+  <h2>Summer Camps 2019!</h2>
+  <hr>
+  {% for camp in camps %}
+  <ul>
+    <li><a href="{{ camp.get_absolute_url }}"><strong>{{ camp.theme }}</strong></a><em><small>  {{ camp.week_date }}</small></em></li>
+  </ul>
+  {% endfor %}
+{% endblock %}

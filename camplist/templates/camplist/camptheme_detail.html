@@ -1,0 +1,42 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/photo{{ object.id }}.jpg");
+    background-size: cover;
+    font-weight: 500;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  {% if camptheme.id > 1 %}
+  <a href="{{ camptheme.previous }}">Previous Week</a>
+  {% endif %}
+  <h1>Camp {{ camptheme.id }}</h1>
+  {% if camptheme.id < 9 %}
+  <a href="{{ camptheme.next }}">Following Week</a>
+  {% endif %}
+  <p></p>
+  {% if camptheme %}
+  <ul>
+      <li>
+        <h2>{{ camptheme.theme }}</h2>
+        <p><b>DATES: {{ camptheme.week_date }}</b></p>
+        <p><b>FIELD TRIP: {{ camptheme.field_trip }}</b></p>
+        <p><b>SUMMARY:</b> {{ camptheme.summary | linebreaksbr }}</p>
+        <p><b>PRICE: ${{ camptheme.price.price_in_dollars }}</b></p>
+      </li>
+  </ul>
+  {% else %}
+    <p>There is no camp available.</p>
+  {% endif %}
+  {% if user.is_authenticated %}
+    <h4><a href="{% url 'parent-detail' user.id %}">Book this Camp</h4>
+  {% else %}
+    <h4>Please <a href="{% url 'login'%}?next={{request.path}}">login</a> or <a href="{% url 'signup' %}">register</a>, in order to book!</h4>
+  {% endif %}
+<p></p>
+  <a href="{% url 'camps' %}">Back to the Camp List</a>
+
+{% endblock %}

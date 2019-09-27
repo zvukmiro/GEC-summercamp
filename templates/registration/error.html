@@ -1,0 +1,18 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../../camplist/static/camplist/img/error.jpg");
+    color: white;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1>Error</h1>
+  {% if message %}
+    <p>{{ message }}</p>
+  {% else %}
+    <p>Unknown error.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,30 @@
+.sidebar-nav {
+  margin: 40px 0px 0px 30px;
+  padding: 0;
+  list-style: none;
+}
+html, body {
+    height:100%;
+}
+.container-fluid, .row, .col-sm-10{
+    height: 100%;
+}
+
+h1 {
+  color: #800000;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+a {
+  color: #B22222;
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: black;
+
+}
+a:hover{
+  color: #1B4D3E;
+}
+
+li{
+  text-shadow: 1px 1px #DDA0DD;
+}

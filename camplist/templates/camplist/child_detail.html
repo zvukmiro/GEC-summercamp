@@ -1,0 +1,43 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/bookCamp.jpg");
+    background-size: cover;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1>Child: {{ child.first_name }} {{ child.last_name }}</h1>
+  <button><a href="{% url 'edit-child' child.id %}">Book Camps</a></button>    <button><a href="{% url 'parent-detail' child.parent.id %}">Choose different child</a></button>
+
+  <p></p>
+  {% if child %}
+    <ul>
+        <p><em>PARENT : <a href="{{ child.parent.get_absolute_url }}">{{ child.parent.first_name }} {{ child.parent.last_name }}</a></em></p>
+        <p><em>DOB : {{ child.dob }}</em></p>
+        <p><em>GRADE IN FALL : {{ child.grade_in_fall }}</em></p>
+        {% if child.camps %}
+          <p> Child is enrolled in following camps: </p>
+          <p><em>CAMPS : {{ child.display_camps }}</em></p>
+          <p><em>TOTAL PRICE : ${{ child.total_price }}</em></p>
+        {% else %}
+          <p>Child is not registered for camps.</p>
+          <p>To book a camp for this child, click BOOK CAMP button</p>
+        {% endif %}
+
+    </ul>
+  {% else %}
+    <p>There is no child registered.</p>
+  {% endif %}
+  <p></p>
+  <hr>
+  <a href="{% url 'edit-child' child.id %}">Edit Child</a> |
+  <a href="{% url 'edit-child' child.id %}">Book Camps</a>  |
+  <a href="{% url 'delete-child' child.id %}">Delete Child Info</a>
+  <hr>
+  <a href="{% url 'camps' %}">Back to the Camp List</a>
+
+{% endblock %}

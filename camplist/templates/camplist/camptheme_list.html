@@ -1,0 +1,34 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+  body, html{
+    height:auto;
+  }
+
+   .container-fluid {
+    background-image: url("../../static/camplist/img/girl-1.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    color: #800000;
+    text-shadow: 3px 3px 2px #FFDAB9;
+    font-weight: 500;
+   }
+</style>
+{% endblock %}
+{% block content %}
+  <h1>Camp List</h1>
+  {% if camptheme_list %}
+  <ul>
+    {% for camp in camptheme_list %}
+      <li>
+        <a href="{{ camp.get_absolute_url }}">{{ camp.theme }}</a>
+        <p><em>DATES: </em>{{ camp.week_date }}</p>
+        <p><em>FIELD TRIP: </em><b>{{ camp.field_trip }}</b></p>
+        <p><em>PRICE: <em><i>{{ camp.price }}</i></p>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no camps available.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../../static/camplist/img/tree.jpg");
+    background-size: cover;
+    font-weight: 500;
+   }
+</style>
+{% endblock %}
+{% block title %}Edit Contact Info{% endblock %}
+
+{% block content %}
+  <h2>Edit Contact Info</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

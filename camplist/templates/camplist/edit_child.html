@@ -1,0 +1,28 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../../static/camplist/img/kid.jpg");
+    background-size: cover;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <h2>Child Info Edit  |  Book Camps</h2>
+    <button><a href="{% url 'parent-detail' child.parent.id %}">Choose different child</a></button>
+    <hr>
+    <p>PARENT : {{ user.username }}</p>
+    <form method='POST' action=''>{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save</button>
+    </form>
+    <br>
+    <p><em> * to deselect (delete selected camp), hold down CTRL and select camp</em></p>
+    <p><em> ** to add more camps, hold down CTRL and select new camp</em></p>
+  {% else %}
+    <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+  {% endif %}
+{% endblock %}

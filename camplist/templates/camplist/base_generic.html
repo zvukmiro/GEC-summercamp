@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}
+    <title>Union School District Summer Camps</title>
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" type='text/css' href="{% static '/camplist/css/styles.css' %}">
+  {% block additional_styles %}
+  <style>
+     .container-fluid {
+      background-image: url("../../static/camplist/img/girl-1.jpg");
+      background-repeat: repeat-y;
+      background-attachment: fixed;
+      color: #800000;
+      text-shadow: 3px 3px 2px #FFDAB9;
+      font-weight: 500;
+     }
+  </style>
+  {% endblock %}
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2">
+        {% block sidebar %}
+          <ul class="sidebar-nav">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <p></p>
+            <li><a href="{% url 'camps' %}">Camps</a></li>
+            <p></p>
+            {% if user.is_authenticated %}
+              <li>User: {{ user.get_username }}</li><hr>
+              <li><a href="{% url 'parent-detail' user.id %}">Parent Info</a></li>
+              <li><a href="{% url 'add-child' %}">Add a Child</a></li>
+              <li><a href="{% url 'logout' %}?next={% url 'index' %}">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}?next={% url 'index' %}">Login</a></li>
+              <li><a href="{% url 'signup' %}">Signup</a></li>
+            {% endif %}
+            <hr>
+          </ul>
+        {% endblock %}
+        </div>
+        <div class="col-sm-10">{% block content %}{% endblock %}</div>
+      </div>
+  </div>
+</body>
+
+</html>

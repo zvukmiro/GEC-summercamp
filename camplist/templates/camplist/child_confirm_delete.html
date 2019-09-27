@@ -1,0 +1,22 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../../static/camplist/img/kid.jpg");
+    background-size: cover;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+{% block content %}
+
+<h1>Delete Child</h1>
+
+<p>Are you sure you want to erase this child: {{ child }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Yes, delete.">
+</form>
+
+{% endblock %}

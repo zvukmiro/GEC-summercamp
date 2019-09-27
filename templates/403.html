@@ -1,0 +1,19 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../../static/camplist/img/error.jpg");
+    color: yellow;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1>Error</h1>
+  {% if exception %}
+    <p>{{ exception }}</p>
+  {% else %}
+    <p>You do not have permission to view this page.</p>
+  {% endif %}
+{% endblock %}

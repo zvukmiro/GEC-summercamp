@@ -1,0 +1,20 @@
+{% extends "camplist/base_generic.html" %}
+{% block additional_styles %}
+<style>
+    .container-fluid{
+    background-image: url("../../static/camplist/img/error.jpg");
+    background-size: cover;
+    color: green;
+    font-weight: 600;
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1>Error</h1>
+  {% if exception %}
+    <h3>{{ exception }}</h3>
+  {% else %}
+    <p>Not found. User can access only their own information.</p>
+  {% endif %}
+{% endblock %}
