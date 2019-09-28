@@ -149,5 +149,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # using heroku postegresqul connecting in django
 import dj_database_url
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())
