@@ -1,1 +1,1 @@
-web: gunicorn summercamp.wsgi --log-file -
+web: gunicorn summercamp.wsgi
