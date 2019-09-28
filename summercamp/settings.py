@@ -84,10 +84,13 @@ WSGI_APPLICATION = 'summercamp.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': {}
+        #'ENGINE': 'django.db.backends.postgresql',
+        #'NAME': 'gecdatabase',
+        #'USER': 'zvukmiro',
+        #'PASSWORD': 'sakana1971',
+        #'HOST': '/heroku.gec-summercamp',
+        #'PORT': '5432',
 }
 
 
