@@ -22,14 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 import os
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-# SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = 'xg45#l8x(d$e_bm-24kv#rn%mp4r$-w*q)8z3(06dqh8yy0*&w'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'xg45#l8x(d$e_bm-24kv#rn%mp4r$-w*q)8z3(06dqh8yy0*&w')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+# DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-DEBUG = os.environ.get('DJANGO_DEBUG')
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com', 'gec-summercamp.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'gec-summercamp.herokuapp.com']
 
 
 # Application definition
@@ -86,14 +86,24 @@ WSGI_APPLICATION = 'summercamp.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {}
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'NAME': 'gecdatabase',
-        #'USER': 'zvukmiro',
-        #'PASSWORD': 'sakana1971',
-        #'HOST': '/heroku.gec-summercamp',
-        #'PORT': '5432',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+"""
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'summmercamp',
+        'USER': 'zv',
+        'PASSWORD': 'summer2019',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        #'HOST': '/heroku.gec-summercamp',
+    }
+"""
+
 
 
 # Password validation
@@ -146,10 +156,22 @@ LOGIN_REDIRECT_URL = '/'
 # displaying emails on the console, so one can copy a link for pass reset - email not functional
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # see if you need this whitenoise compression
-# using heroku postegresqul connecting in django
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+
+# django.core.exceptions.ImproperlyConfigured:
+# settings.DATABASES is improperly configured.
+# Please supply the ENGINE value. Check settings documentation for more details.
+
+# gave me an error because of ssl_require=True,
+
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
