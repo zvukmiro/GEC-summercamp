@@ -60,7 +60,7 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length = 55)
     last_name = models.CharField(max_length = 55)
     address = models.CharField(max_length = 100)
-    phone = models.IntegerField(help_text='digits only, no brackets or dashes')
+    phone = models.CharField(max_length = 15, help_text='digits only, no brackets or dashes')
 
     # USERNAME_FIELD = 'email' if you are changing login
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email', 'address', 'phone']

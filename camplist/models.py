@@ -11,7 +11,7 @@ from django.urls import reverse
 
 class CampPrice(models.Model):
     duration_in_days = models.IntegerField()
-    price_in_dollars = models.IntegerField(default=0)
+    price_in_dollars = models.IntegerField(null=True)
 
     def __str__(self):
         return f'${self.price_in_dollars} for {self.duration_in_days} days'
@@ -70,7 +70,7 @@ class Child(models.Model):
     first_name = models.CharField(max_length=64, blank=False)
     last_name = models.CharField(max_length=64, blank=False)
     dob = models.DateField(max_length=12, blank=False)
-    grade_in_fall = models.CharField(max_length=1, default='K', blank=False)
+    grade_in_fall = models.CharField(max_length=1, blank=False)
     parent = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE,
                                 related_query_name="parent",
