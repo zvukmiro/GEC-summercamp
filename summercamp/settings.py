@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 import django_heroku
 
-from decouple import config
+# from decouple import config
 # from dj_database_url import parse as db_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -82,25 +82,25 @@ WSGI_APPLICATION = 'summercamp.wsgi.application'
 
 # Database
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#    }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+   }
+}
 
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ('DB_NAME'),
-        'USER': os.environ('DB_USER'),
-        'PASSWORD': os.environ('DB_PASSWORD'),
-        'HOST': os.environ('DATABASE_URL'),
-        'PORT': '',
-        }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ('DB_NAME'),
+#         'USER': os.environ('DB_USER'),
+#         'PASSWORD': os.environ('DB_PASSWORD'),
+#         'HOST': os.environ('DATABASE_URL'),
+#         'PORT': '',
+#         }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
