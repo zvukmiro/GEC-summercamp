@@ -3,7 +3,8 @@
 Summer camp program, run by the local elementary school after-care group, offering camp week by week of summer break.
 
 ## Usage
-Guests can scroll thru weeks of camps and read about specific week offerings: * dates
+Guests can scroll thru weeks of camps and read about specific week offerings: 
+* dates
 * theme
 * price
 * field trips.
